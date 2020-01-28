@@ -1,0 +1,30 @@
+{
+  "Product": [
+    {
+      "id": 1,
+      "Name": "Tesla Model 3",
+      "Price": "200 000 kr",
+      "img": "https://placeimg.com/640/480/any"
+    },
+    {
+      "id": 2,
+      "Name": "Tesla Model S",
+      "Price": "700 000 kr",
+      "img": "https://placeimg.com/640/480/any?t=1580125973633"
+    },
+    {
+      "id": 3,
+      "Name": "Tesla Cybertruck",
+      "Price": "400 000 kr",
+      "img": "https://placeimg.com/640/480/any?t=1580125997660"
+    }
+  ],
+  "Varukorg": [
+    {
+      "id": 1,
+      "Name": "Tesla Model 3",
+      "Price": "200 000 kr",
+      "img": "https://placeimg.com/640/480/any"
+    }
+  ]
+}
