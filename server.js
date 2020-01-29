@@ -167,8 +167,8 @@ app.get("/3del", async (request, response) => {
 });
 
 app.get("*", function(request, response) {
-  response.send("200 error");
-  console.log("200 error");
+  response.send("200 error, that product does not exist");
+  console.log("200 error, that product does not exist");
 });
 
 /*const youCant = db.get('Varukorg')

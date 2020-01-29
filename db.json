@@ -19,12 +19,5 @@
       "img": "https://placeimg.com/640/480/any?t=1580125997660"
     }
   ],
-  "Varukorg": [
-    {
-      "id": 1,
-      "Name": "Tesla Model 3",
-      "Price": "200 000 kr",
-      "img": "https://placeimg.com/640/480/any"
-    }
-  ]
+  "Varukorg": []
 }
