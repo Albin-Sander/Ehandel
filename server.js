@@ -76,7 +76,7 @@ app.get("/1", async (request, response) => {
   }
 });
 
-app.get("/Products/2", async (request, response) => {
+app.get("/2", async (request, response) => {
   const existModelS = db
     .get("Varukorg")
     .find({ id: 2 })
