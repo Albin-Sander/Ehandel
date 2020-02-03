@@ -6,176 +6,137 @@ const adapter = new Filesync("db.json");
 const db = lowdb(adapter);
 const port = process.env.PORT || 8000;
 
-db.defaults({ Product: [], Varukorg: [] }).write();
+const initiateDatabase = () => {
+  const product = db.has("Product").value();
+  const shoppingCart = db.has("Shoppingcart").value();
 
-const Model3 = {
-  id: 1,
-  Name: "Tesla Model 3",
-  Price: "200 000 kr"
+  if (!product) {
+    db.defaults({ Product: [], Shoppingcart: [] }).write();
+  }
+
+  if (!shoppingCart) {
+    db.defaults({ Product: [], Shoppingcart: [] }).write();
+  }
 };
 
-/*db.get('Product')
-.push(Model3).write();*/
+//Add new Products
+const addProduct = async (id, name, price, img) => {
+  const data = await db
+    .get("Product")
+    .push({ id, name, price, img })
+    .write();
+  return data;
+};
 
-app.get("/", async (request, response) => {
-  console.log(request.url);
-  throw new Error("Opps!! Something went wrong");
+app.post("/product", async (req, res) => {
+  const { id, name, price, img } = req.query;
+  const data = await addProduct(id, name, price, img);
 });
 
-const TeslaModel3 = db
-  .get("Product")
-  .find({ id: 1 })
-  .value();
-
-const TeslamodelS = db
-  .get("Product")
-  .find({ id: 2 })
-  .value();
-
-const TeslaCyberTruck = db
-  .get("Product")
-  .find({ id: 3 })
-  .value();
-
-app.get("/Products", function(request, response) {
-  response.send("Välj bland dessa alternativ: (Se i Terminalen)");
-  console.log("Välj bland dessa modeller");
-  console.log(TeslaModel3);
-  console.log(TeslamodelS);
-  console.log(TeslaCyberTruck);
+app.get("/product", (req, res) => {
+  res.json(db.get("Product").value());
+  return res;
 });
 
-app.get("/ShoppingCart", function(request, response) {
-  response.send("Detta är din kundvagn (Se i Terminalen)");
-  console.log("Detta är din kundvagn");
-  const cart = db.get("Varukorg").value();
-  console.log(cart);
+//Add new items to shoppingcart
 
-  const totalPrice = db
-    .get("Varukorg")
-    .map("Price")
-    .value();
-  console.log(totalPrice);
-});
-
-app.get("/1", async (request, response) => {
-  const existModel3 = db
-    .get("Varukorg")
-    .find({ id: 1 })
+const addToShoppingCart = async id => {
+  const lookInCart = await db
+    .get("Shoppingcart")
+    .find({ id })
     .value();
 
-  if (typeof existModel3 === "undefined") {
-    db.get("Varukorg")
-      .push(TeslaModel3)
-      .write();
-    response.send("Lade till Tesla Model 3 i Varukorgen");
-    console.log("Lade till Tesla Model 3 i varukorgen");
+  if (lookInCart) {
+    let message = "";
+    return message;
   } else {
-    console.log("Tesla Model 3 finns redan i Varukorgen");
-    response.send("Tesla Model 3 finns redan i Varukorgen");
+    let data = await db
+      .get("Product")
+      .find({ id })
+      .value();
+
+    if (data) {
+      data = await db
+        .get("Shoppingcart")
+        .push(data)
+        .write();
+      return data;
+    } else {
+      message = false;
+      return message;
+    }
   }
+};
+
+app.post("/shoppingcart", async (req, res) => {
+  const { id } = req.query;
+  const data = await addToShoppingCart(id);
+  let message = {
+    success: true,
+    message: "Product added to your cart"
+  };
+
+  if (typeof data == "number" || data instanceof number) {
+    message = {
+      success: false,
+      message: "You already have this in your shoppingcart"
+    };
+  } else if (data === false) {
+    message = {
+      success: false,
+      message: "That product does not exist"
+    };
+  }
+
+  message.data = data[data.length - 1];
+  return res.send(message);
 });
 
-app.get("/2", async (request, response) => {
-  const existModelS = db
-    .get("Varukorg")
-    .find({ id: 2 })
+app.get("/shoppingcart", (req, res) => {
+  res.json(db.get("Shoppingcart").value());
+  return res;
+});
+
+//Delete Products from Shoopingcart
+
+const deleteProduct = async id => {
+  const lookInCart = await db
+    .get("Shoppingcart")
+    .find({ id })
     .value();
 
-  if (typeof existModelS === "undefined") {
-    response.send("Lade till Tesla Model S i varukorgen");
-    db.get("Varukorg")
-      .push(TeslamodelS)
+  if (lookInCart) {
+    let res = await db
+      .get("Shoppingcart")
+      .remove({ id })
       .write();
-    console.log("Lade till Tesla Model S i varukorgen");
+    return res;
   } else {
-    console.log("Tesla Model S finns redan i Varukorgen");
-    response.send("Tesla Model S finns redan i Varukorgen");
+    res = "";
+    return res;
   }
-});
+};
 
-app.get("/3", async (request, response) => {
-  const existCyber = db
-    .get("Varukorg")
-    .find({ id: 3 })
-    .value();
+app.delete("/shoppingcart", async (req, res) => {
+  const { id } = req.query;
+  const data = await deleteProduct(id);
 
-  if (typeof existCyber === "undefined") {
-    db.get("Varukorg")
-      .push(TeslaCyberTruck)
-      .write();
-    console.log("Lade till Tesla Cybertruck i varukorgen");
-    response.send("Lade till Tesla CyberTruck i varukorgen");
+  if (typeof data === "string" || data instanceof String) {
+    message = {
+      success: false,
+      message: "That product does not exist"
+    };
   } else {
-    console.log("Tesla Cybertruck finns redan i Varukorgen");
-    response.send("Tesla Cybertruck finns redan i Varukorgen");
+    message = {
+      success: true,
+      message: "Product deleted from shoppingcart"
+    };
   }
+  message.data = data[res.length - 1];
+  return res.send(message);
 });
 
-app.get("/1del", async (request, response) => {
-  const removeModel3 = db
-    .get("Varukorg")
-    .find({ id: 1 })
-    .value();
-
-  if (typeof removeModel3 === "undefined") {
-    console.log("Du har inte Tesla Model 3 i Varukorgen");
-    response.send("Du har inte Tesla Model 3 i Varukorgen");
-  } else {
-    db.get("Varukorg")
-      .remove({ id: 1 })
-      .write();
-    console.log("Tog bort Tesla Model 3 från kundvagnen");
-    response.send("Tog bort Tesla Model 3 från Varukorgen");
-  }
+app.listen(port, () => {
+  console.log("Server started");
+  initiateDatabase();
 });
-
-app.get("/2del", async (request, response) => {
-  const removeModelS = db
-    .get("Varukorg")
-    .find({ id: 2 })
-    .value();
-
-  if (typeof removeModelS === "undefined") {
-    console.log("Du har inte Tesla Model S i Varukorgen");
-    response.send("Du har inte Tesla Model S i Varukorgen");
-  } else {
-    response.send("Tog bort Tesla Model S från Varukorgen");
-    db.get("Varukorg")
-      .remove({ id: 2 })
-      .write();
-    console.log("Tog bort Tesla Model S från kundvagnen");
-  }
-});
-
-app.get("/3del", async (request, response) => {
-  const removeCyber = db
-    .get("Varukorg")
-    .find({ id: 3 })
-    .value();
-
-  if (typeof removeCyber === "undefined") {
-    console.log("Du har inte Tesla Cybertruck i Varukorgen");
-    response.send("Du har inte Tesla Cybertruck i Varukorgen");
-  } else {
-    response.send("Tog bort Tesla Cybertruck från varukorgen");
-    db.get("Varukorg")
-      .remove({ id: 3 })
-      .write();
-    console.log("Tog bort Tesla Cybertruck från kundvagnen");
-  }
-});
-
-app.get("*", function(request, response) {
-  response.send("200 error, that product does not exist");
-  console.log("200 error, that product does not exist");
-});
-
-/*const youCant = db.get('Varukorg')
-                .find({id: 1})*/
-
-/*db.get('Product')
-.remove({Name: 'Tesla Model 3'})
-.write();*/
-
-app.listen(port);
