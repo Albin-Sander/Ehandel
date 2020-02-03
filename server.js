@@ -76,7 +76,7 @@ app.post("/shoppingcart", async (req, res) => {
     message: "Product added to your cart"
   };
 
-  if (typeof data == "number" || data instanceof number) {
+  if (typeof data == "string" || data instanceof String) {
     message = {
       success: false,
       message: "You already have this in your shoppingcart"
