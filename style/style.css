@@ -143,3 +143,78 @@ header {
   align-self: center;
   justify-self: flex-end;
 }
+
+.teslaModel3 {
+  display: grid;
+  flex-direction: row;
+  justify-content: center;
+}
+
+#model3Title {
+  display: flex;
+  justify-self: center;
+  align-self: center;
+}
+
+#TeslaModel3Image {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+#model3Price {
+  display: flex;
+  align-self: flex-end;
+}
+
+.teslaModelS {
+  display: grid;
+  flex-direction: row;
+  justify-content: center;
+}
+
+#modelSTitle {
+  display: flex;
+  justify-self: center;
+  align-self: center;
+}
+
+#TeslaModelSImage {
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+#modelSPrice {
+  display: flex;
+  align-self: flex-end;
+}
+
+.teslaCyberTruck {
+  display: grid;
+  flex-direction: row;
+  justify-content: center;
+}
+
+#cyberTitle {
+  display: flex;
+  align-self: center;
+  justify-self: center;
+}
+
+#TeslaCyberImage {
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+#cyberPrice {
+  display: flex;
+  align-self: flex-end;
+}
+
+button {
+  color: orange;
+  width: 50%;
+  height: 50%;
+}

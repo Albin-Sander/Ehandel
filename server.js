@@ -5,6 +5,8 @@ const Filesync = require("lowdb/adapters/Filesync");
 const adapter = new Filesync("db.json");
 const db = lowdb(adapter);
 const port = process.env.PORT || 8000;
+var cors = require("cors");
+app.use(cors());
 
 const initiateDatabase = () => {
   const product = db.has("Product").value();
