@@ -19,11 +19,15 @@ function logData() {
   let resultsId2 = myJson.includes("Tesla Model S");
   let resultsId3 = myJson.includes("Tesla Cybertruck");
   if (resultsId1 === true) {
-    document
-      .getElementById("TeslaModel3Image")
-      .setAttribute("src", "img/model3.jpg");
-    document.getElementById("model3Title").innerHTML = "Tesla Model 3";
-    document.getElementById("model3Price").innerHTML = "Price: 200 000 kr";
+    document.querySelector(".teslaModel3").innerHTML +=
+      "<p id=model3Title>Tesla Model 3</p>";
+
+    document.querySelector(".teslaModel3").innerHTML +=
+      "<img id=TeslaModel3Image src=img/model3.jpg>";
+
+    document.querySelector(".teslaModel3").innerHTML +=
+      "<p id=model3Price>Price:200 000 kr</p>";
+
     document.querySelector(".teslaModel3").innerHTML +=
       "<button id=removeModel3>Remove</button>";
 
@@ -31,16 +35,21 @@ function logData() {
       fetch("http://localhost:8000/Shoppingcart?id=1", {
         method: "Delete"
       });
-      alert("Removed Tesla Model 3 from ShoppingCart");
+      if (alert("Removed Tesla Model 3 from ShoppingCart")) {
+      } else window.location.reload();
     };
   }
 
   if (resultsId2 === true) {
-    document
-      .getElementById("TeslaModelSImage")
-      .setAttribute("src", "/img/models.jpg");
-    document.getElementById("modelSTitle").innerHTML = "Tesla Model S";
-    document.getElementById("modelSPrice").innerHTML = "Price: 700 000 kr";
+    document.querySelector(".teslaModelS").innerHTML +=
+      "<p id=modelSTitle>Tesla Model S</p>";
+
+    document.querySelector(".teslaModelS").innerHTML +=
+      "<img id=TeslaModelSImage src=/img/models.jpg>";
+
+    document.querySelector(".teslaModelS").innerHTML +=
+      "<p id=modelSPrice>Price: 700 000 kr</p>";
+
     document.querySelector(".teslaModelS").innerHTML +=
       "<button id=removeModelS>Remove</button>";
 
@@ -53,11 +62,15 @@ function logData() {
   }
 
   if (resultsId3 === true) {
-    document
-      .getElementById("TeslaCyberImage")
-      .setAttribute("src", "/img/cyber.jpg");
-    document.getElementById("cyberTitle").innerHTML = "Tesla Cybertruck";
-    document.getElementById("cyberPrice").innerHTML = "Price: 400 000 kr";
+    document.querySelector(".teslaCyberTruck").innerHTML +=
+      "<p id=cyberTitle>Tesla Cybertruck</p>";
+
+    document.querySelector(".teslaCyberTruck").innerHTML +=
+      "<img id=TeslaCyberImage src=/img/cyber.jpg />";
+
+    document.querySelector(".teslaCyberTruck").innerHTML +=
+      "<p id=cyberPrice>Price: 400 000 kr</p>";
+
     document.querySelector(".teslaCyberTruck").innerHTML +=
       "<button id=removeCyber>Remove</button>";
 
