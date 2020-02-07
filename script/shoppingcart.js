@@ -13,11 +13,20 @@ window.onload = async function getShoppingCart() {
 
 function logData() {
   console.log(dataset);
+  for (var i = 0; i < 1; i++) {
+    var model3Sum = dataset[i];
+  }
+
+  for (var i = 0; i < 1; i++) {
+    var modelSSum = dataset[i];
+  }
+
   let myJson = JSON.stringify(dataset);
   console.log(myJson);
   let resultsId1 = myJson.includes("Tesla Model 3");
   let resultsId2 = myJson.includes("Tesla Model S");
   let resultsId3 = myJson.includes("Tesla Cybertruck");
+
   if (resultsId1 === true) {
     document.querySelector(".teslaModel3").innerHTML +=
       "<p id=model3Title>Tesla Model 3</p>";
@@ -25,8 +34,16 @@ function logData() {
     document.querySelector(".teslaModel3").innerHTML +=
       "<img id=TeslaModel3Image src=img/model3.jpg>";
 
-    document.querySelector(".teslaModel3").innerHTML +=
-      "<p id=model3Price>Price:200 000 kr</p>";
+    if (model3Sum.Price == "200 000 kr") {
+      var para = document.createElement("p");
+      para.innerHTML = model3Sum.Price;
+
+      document.querySelector(".teslaModel3").appendChild(para);
+    } else {
+      var para2 = document.createElement("p");
+      para2.innerHTML = "200 000 kr";
+      document.querySelector(".teslaModel3").appendChild(para2);
+    }
 
     document.querySelector(".teslaModel3").innerHTML +=
       "<button id=removeModel3>Remove</button>";
@@ -35,8 +52,10 @@ function logData() {
       fetch("http://localhost:8000/Shoppingcart?id=1", {
         method: "Delete"
       });
-      if (alert("Removed Tesla Model 3 from ShoppingCart")) {
-      } else window.location.reload();
+
+      if (confirm("Removed Tesla Model 3 from ShoppingCart") == true) {
+        window.location.reload(true);
+      }
     };
   }
 
@@ -47,8 +66,16 @@ function logData() {
     document.querySelector(".teslaModelS").innerHTML +=
       "<img id=TeslaModelSImage src=/img/models.jpg>";
 
-    document.querySelector(".teslaModelS").innerHTML +=
-      "<p id=modelSPrice>Price: 700 000 kr</p>";
+    if (modelSSum.Price == "700 000 kr") {
+      var x = document.createElement("p");
+      x.innerHTML = modelSSum.Price;
+
+      document.querySelector(".teslaModelS").appendChild(x);
+    } else {
+      var y = document.createElement("p");
+      y.innerHTML = "200 000 kr";
+      document.querySelector(".teslaModelS").appendChild(y);
+    }
 
     document.querySelector(".teslaModelS").innerHTML +=
       "<button id=removeModelS>Remove</button>";

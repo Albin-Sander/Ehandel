@@ -4,34 +4,22 @@
       "id": "1",
       "Name": "Tesla Model 3",
       "Price": "200 000 kr",
-      "img": "https://placeimg.com/640/480/any"
+      "img": "https://images.unsplash.com/photo-1571987502227-9231b837d92a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80"
     },
     {
       "id": "2",
       "Name": "Tesla Model S",
       "Price": "700 000 kr",
-      "img": "https://placeimg.com/640/480/any?t=1580125973633"
+      "img": "https://images.unsplash.com/photo-1536700503339-1e4b06520771?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80"
     },
     {
       "id": "3",
-      "name": "Tesla Cybertruck",
-      "price": "400 000 kr",
-      "img": "https://placeimg.com/640/480/any?t=1580125997660"
+      "Name": "Tesla Cybertruck",
+      "Price": "400 000 kr",
+      "img": "https://images.unsplash.com/photo-1572029117144-b991c2eaee93?ixlib=rb-1.2.1&auto=format&fit=crop&w=935&q=80"
     }
   ],
   "Shoppingcart": [
-    {
-      "id": "3",
-      "name": "Tesla Cybertruck",
-      "price": "400 000 kr",
-      "img": "https://placeimg.com/640/480/any?t=1580125997660"
-    },
-    {
-      "id": "2",
-      "Name": "Tesla Model S",
-      "Price": "700 000 kr",
-      "img": "https://placeimg.com/640/480/any?t=1580125973633"
-    },
     {
       "id": "1",
       "Name": "Tesla Model 3",
