@@ -21,10 +21,10 @@
   ],
   "Shoppingcart": [
     {
-      "id": "1",
-      "Name": "Tesla Model 3",
-      "Price": "200 000 kr",
-      "img": "https://placeimg.com/640/480/any"
+      "id": "3",
+      "Name": "Tesla Cybertruck",
+      "Price": "400 000 kr",
+      "img": "https://images.unsplash.com/photo-1572029117144-b991c2eaee93?ixlib=rb-1.2.1&auto=format&fit=crop&w=935&q=80"
     }
   ]
 }
