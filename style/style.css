@@ -1,8 +1,7 @@
 .grid-container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  grid-template-rows: 0.5fr 1fr 0.3fr;
-  grid-template-areas: "model3 header models header" " model3image . modelsimage ." "model3price . .";
+  grid-template-rows: 1fr 1fr 1fr;
   height: 100%;
   justify-content: center;
   align-content: center;
@@ -13,9 +12,14 @@ header {
   grid-column: 2;
 }
 
+a {
+  display: grid;
+  grid-column: 5/6;
+  grid-row: 1;
+}
+
 .fa-shopping-cart {
-  grid-column: 5;
-  grid-row: 1/2;
+  display: flex;
   justify-self: center;
   align-self: start;
   font-size: 1.5rem;
@@ -26,210 +30,13 @@ header {
   justify-self: end;
 }
 
-#model3 {
-  display: grid;
-  grid-row: 1/3;
-  grid-column: 1;
-  max-height: 100%;
-}
-
-#model3Text {
-  display: grid;
-  grid-row: 1/2;
-  font-size: 1.5rem;
-  justify-content: center;
-  align-content: center;
-}
-
-#model3image {
-  display: grid;
-  grid-row: 2;
-  grid-column: 1;
-  width: 100%;
-  height: 100%;
-  justify-self: end;
-}
-
-#model3price {
-  font-size: 1.5rem;
-  grid-row: 3;
-  grid-column: 1;
-  align-self: start;
-  font-family: "Noto Sans", sans-serif;
-}
-
-#btn1 {
-  display: flex;
-  width: 25%;
-  height: 25%;
-  grid-row: 3/4;
-  grid-column: 1;
-  align-self: center;
-  justify-self: flex-end;
-}
-
-#models {
-  display: grid;
-  grid-column: 3;
-  grid-row: 1/3;
-}
-
-#modelsText {
-  display: grid;
-  grid-row: 1/2;
-  grid-column: 3;
-  font-size: 1.5rem;
-  justify-content: center;
-  align-content: center;
-}
-
-#modelsimage {
-  display: grid;
-  grid-row: 2;
-  grid-column: 3;
-  width: 100%;
-  height: 100%;
-  justify-self: end;
-}
-
-#modelsprice {
-  font-size: 1.5rem;
-  grid-row: 3;
-  grid-column: 3;
-  align-self: start;
-  font-family: "Noto Sans", sans-serif;
-}
-
-#btn2 {
-  display: flex;
-  width: 25%;
-  height: 25%;
-  grid-row: 3/4;
-  grid-column: 3;
-  align-self: center;
-  justify-self: flex-end;
-}
-
-#cybertruckText {
-  display: grid;
-  grid-row: 1/2;
-  grid-column: 5;
-  font-size: 1.5rem;
-  justify-content: center;
-  align-content: center;
-}
-
-#cybertruckimage {
-  display: grid;
-  grid-row: 2;
-  grid-column: 5;
-  width: 100%;
-  height: 100%;
-  justify-self: end;
-}
-
-#cybertruckprice {
-  font-size: 1.5rem;
-  grid-row: 3;
-  grid-column: 5;
-  align-self: start;
-  font-family: "Noto Sans", sans-serif;
-}
-
-#btn3 {
-  display: flex;
-  width: 25%;
-  height: 25%;
-  grid-row: 3/4;
-  grid-column: 5;
-  align-self: center;
-  justify-self: flex-end;
-}
-
-.teslaModel3 {
-  display: grid;
-  flex-direction: row;
-  justify-content: center;
-}
-
-#model3Title {
-  display: flex;
-  justify-self: center;
-  align-self: center;
-}
-
-#TeslaModel3Image {
-  display: flex;
-  width: 100%;
-  height: 100%;
-}
-
-#model3Price {
-  display: flex;
-  align-self: flex-end;
-}
-
-.teslaModelS {
-  display: grid;
-  flex-direction: row;
-  justify-content: center;
-}
-
-#modelSTitle {
-  display: flex;
-  justify-self: center;
-  align-self: center;
-}
-
-#TeslaModelSImage {
-  width: 100%;
-  height: 100%;
-  display: flex;
-}
-
-#modelSPrice {
-  display: flex;
-  align-self: flex-end;
-}
-
-.teslaCyberTruck {
-  display: grid;
-  flex-direction: row;
-  justify-content: center;
-}
-
-#cyberTitle {
-  display: flex;
-  align-self: center;
-  justify-self: center;
-}
-
-#TeslaCyberImage {
-  width: 100%;
-  height: 100%;
-  display: flex;
-}
-
-#cyberPrice {
-  display: flex;
-  align-self: flex-end;
-}
-
 button {
   color: orange;
   width: 50%;
   height: 50%;
 }
 
-#0 {
-  height: 50%;
-  width: 50%;
-}
-
 img {
-  display: flex;
-  flex-direction: column;
-
   height: 100%;
   width: 100%;
 }
@@ -239,6 +46,23 @@ p {
   grid-column: 1;
 }
 
-#shoppingcartlist {
-  grid-column: 5;
+.shoppingcartlist {
+  grid-column: 5/6;
+  grid-row: 3;
+  display: flex;
+  justify-self: center;
+}
+
+#showshopping {
+  height: 40%;
+  width: 30%;
+  grid-column: 5/6;
+  display: flex;
+  justify-self: center;
+}
+
+li {
+  display: flex;
+  flex-direction: row;
+  grid-row: 4/5;
 }
