@@ -71,5 +71,6 @@ function createShoppingList() {
     let seeShoppingCart = document.createElement("li");
     seeShoppingCart.innerHTML = setdata[i].Name;
     document.querySelector(".shoppingcartlist").appendChild(seeShoppingCart);
+    document.getElementById("showshopping").onclick = null;
   }
 }
